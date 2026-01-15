@@ -88,12 +88,12 @@ First, make sure you follow the **README** to download data not provided with th
 The file is now in the correct location, so we can continue. 
 To reproduce a figure of choice simply navigate to the main directory and execute the corresponding script. The example below shows you how to reproduce the principal component analysis (PCA) plot for Figure 1F.
 
-    cd liquidbio/
-    python3 Figure_1_F.py 
+    cd scripts
+    python3 Figure_1_F.py
 
 This will result in the following output.
 
-    WARNING: saving figure to file sourcedata/FIG_1/1F/pcamean-meth.pdf
+    WARNING: saving figure to file results/pcamean-meth.pdf
     UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
       plt.show()
 
@@ -106,7 +106,7 @@ Now navigate to the results folder to find the newly created plot pcamean-meth.p
 Some of the analyses (e.g., the PCA analysis) employ *random seeds*, and hence the resulting plots
  may vary slightly with every new run. This behavior is expected.
 Likewise, due to large data amounts, some of the plots show representative, randomly sampled data points.
-Again, a slight deviation of the precise plot optics can occur and is expected for those,
+Again, a slight deviation of the precise plot optics can occur and is expected for those.
 
 
 ## 6. Data access
