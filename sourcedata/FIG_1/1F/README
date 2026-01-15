@@ -1,0 +1,17 @@
+# Step 1
+Please go to GEO (GSE293866), then to Supplementary files, and download WGBS_PCA_DNMT1i_mESC.h5ad
+
+# Step 2
+Now put in into THIS folder
+
+# Step 3: Run the python script Fig_1_F.py
+AnnData Object contains matrix with CpG methylation values for each sample,
+but also e.g. mean methylation stored under adata.obs
+
+# print(adata)
+#AnnData object with n_obs × n_vars = 15 × 18061592 #samplesxCpGs
+#    obs: 'sample', 'mean_meth', 'var_meth', 'max_meth', 'min_meth'
+#    uns: 'pca'
+#    obsm: 'X_pca'
+#    varm: 'PCs'
+ 

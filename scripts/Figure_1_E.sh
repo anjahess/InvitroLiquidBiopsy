@@ -14,10 +14,12 @@ Date: 2025 APRIL 07
 ####################################################################################
 # BEFORE YOU START
 ####################################################################################
-
 # Step 1
-# For bam density plots please download the fastq.gz files from GEO (GSE293866), align to mm10 (details under Data processing on GSE293866). If you have slightly different alignment # 
-# pipelines this should not drastically affect read density. Each bam should be around about ~50GB.
+# For bam density plots please download the fastq.gz files from GEO (GSE293866),
+# align to mm10 (details under Data processing on GSE293866).
+# If you have slightly different alignment #
+# pipelines this should not drastically affect read density. E
+# ach bam should be around about ~50GB.
 
 # Step 2
 # Put them into this folder. You may adjust names for BAM1 and BAM2 below.
@@ -30,12 +32,13 @@ Date: 2025 APRIL 07
 # AUTHOR: Anja Hess
 # DATE: 20241212
 
-R_script_loc="./Fig_1E_karyo.R"
+R_script_loc="./utils/karyo.R"
 
+# Attention! Names may differ depd. on your pipeline
 BAM1="mpimg_L31945-1_AM-WGBS-622_S8_mm10.bsmap.srt.rd.bam"
 BAM2="mpimg_L31953-1_AM-WGBS-630_S16_mm10.bsmap.srt.rd.bam"
 
-# 19 autosomes..
+# 19 autosomes.. call the R script for each
 for i in {1..19}; do
   (echo $FILE
   Rscript $R_script_loc $BAM1 $BAM2 "chr${i}" mm10 "chr${i}_mm10.pdf")&
@@ -43,3 +46,4 @@ done
 wait
 
 
+# END OF SCRIPT

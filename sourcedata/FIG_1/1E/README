@@ -1,0 +1,22 @@
+# Density plots
+Step 1:
+For bam density plots please download the fastq.gz files from GEO (GSE293866), align to mm10 (details under Data processing on GSE293866). If you have slightly different alignment pipelines this should not drastically affect read density. Each bam should be around about ~50GB.
+
+Step 2:
+Process bam files as in Fig_1_E.sh
+
+# Bigwigs to be loaded into IGV
+For the bigwigs, please go to GEO (GSE293866), then to Supplementary files, and download any bigwig of interest: 
+
+#Example
+wget https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM8892205&format=file&file=GSM8892205%5FgDNA%5FDay1%5FDNMT1i%5Ffiltered%2Ebw
+
+# cfDNA_Day0_filtered.bw                  gDNA_Day1_DNMT1i_filtered.bw
+#cfDNA_Day1_DNMT1i_filtered.bw           gDNA_Day2_DNMT1i_filtered.bw
+#cfDNA_Day2_DNMT1i_filtered.bw           gDNA_Day3_DMSO-Control_filtered.bw
+#cfDNA_Day3_DNMT1i_filtered.bw           gDNA_Day3_DNMT1i_filtered.bw
+#cfDNA_Day4_DNMT1i_filtered.bw           gDNA_Day4_DNMT1i_filtered.bw
+#cfDNA_Day5_DNMT1i_Recovery_filtered.bw  gDNA_Day5_DNMT1i_Recovery_filtered.bw
+#cfDNA_Day6_DNMT1i_Recovery_filtered.bw  gDNA_Day6_DNMT1i_Recovery_filtered.bw
+#gDNA_Day0_filtered.bw
+

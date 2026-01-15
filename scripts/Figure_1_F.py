@@ -10,12 +10,15 @@ Date: 2025 APRIL 07
 
 """
 import scanpy as sc
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
+
 
 ####################################################################################
 # FIG 1F - Principal Component Analysis
+# ATTENTION - NEEDS DOWNLOAD FROM GEO (GSE293866) FIRST !
 ####################################################################################
 
-source=f"./sourcedata/FIG_1/1F/"
+source=f"{SOURCE_DATA_DIR}FIG_1/1F/"
 sc.settings.figdir = source
 adata = sc.read_h5ad(f"{source}WGBS_PCA_DNMT1i_mESC.h5ad")
 
