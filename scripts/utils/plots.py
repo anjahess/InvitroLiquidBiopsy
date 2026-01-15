@@ -14,23 +14,21 @@ Date: 2025 APRIL 07
 
 import os.path
 import sys
-
-from scripts.utils.constants import script_dir
-
-sys.setrecursionlimit(100000)
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
 import rpy2.robjects as robjects
 from rpy2.robjects import pandas2ri
 from scipy.stats import pearsonr
 pandas2ri.activate()
 import rpy2.robjects as ro
+sys.setrecursionlimit(100000)
 
-from .constants import UTILS_DIR
+from .constants import UTILS_DIR, FIGURE_DIR
 
 
-def R_violins(filename, plot_dir="", samples=[], subsampling=10000):
+def R_violins(filename, plot_dir="", samples=[]):
     """
     To show the correlation for every single CpG/region.
     :return:
@@ -40,9 +38,10 @@ def R_violins(filename, plot_dir="", samples=[], subsampling=10000):
     #########################################################################
     # 0. Create results folder
     #########################################################################
-    results_dir = f"{filename.rsplit('.' ,1)[0]}.pdf"
+    file_id = filename.rsplit("/",1)[1].replace(".tsv","")
+    results_dir = f"{FIGURE_DIR}{file_id}_vio_methylation.pdf"
     if not os.path.isfile(filename):
-        print("R Violin df: Not existing..", df)
+        print("R Violin df: Not existing..", filename)
         exit()
 
     #########################################################################
@@ -67,6 +66,7 @@ def R_violins(filename, plot_dir="", samples=[], subsampling=10000):
     df = pd.read_table(filename, header=0, usecols=cols_to_plot, index_col=None)
     original_number = len(df)
     nrows, ncols = df.shape
+
     ##########################################################################
     # Remove Positions where *all samples* have a NA
     ##########################################################################
@@ -87,12 +87,13 @@ def R_violins(filename, plot_dir="", samples=[], subsampling=10000):
     else:
         subvars = False
         df = pd.melt(df) # will always give you variable, value
+
     #################################################################
     # 2. Call R-version
     #################################################################
     # Loading the function defined in R.
     r = robjects.r
-    r['source'](f"{module_dir}/R_plots.R")
+    r['source'](f"{UTILS_DIR}/R_plots.R")
     plotvio= robjects.globalenv['plotvio']
 
     #################################################################
@@ -207,3 +208,29 @@ def smooth_scatter(df, plot_dir="", samples=[], subsampling=100000, region_id=""
             plotsmoothscatter(df_r, plot_dir, title, sample, other_sample)
             # END OF SAMPLE COMP LOOP
     # END OF FUNCTION
+
+
+def clustermap(file, method="complete", metric="euclidean", outdir=""):
+    """
+    Clustermap seaborn
+    :param file: str
+    :param method: str
+    :param metric: str
+    :param outdir: str
+    :return:
+    """
+
+    cmap = sns.diverging_palette(220, 20, as_cmap=True)
+    df = pd.read_table(file, sep="\t", index_col=0)
+    df.dropna(inplace=True)
+    cols_of_interest = [e for e in df.columns if "DNA" in e]
+    df = df[cols_of_interest]
+    title = f"n = {len(df)}"
+    sns.clustermap(df, rasterized=True, cmap=cmap, method=method, metric=metric, vmin=0, vmax=1)
+    plt.title(title)
+    file_id = file.rsplit("/",1)[1].replace(".tsv","")
+    plt.savefig(f"{outdir}{file_id}_cluster.pdf", bbox_inches="tight")
+    plt.close()
+    # END OF FUNCTION
+
+# END OF SCRIPT
