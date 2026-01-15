@@ -9,14 +9,20 @@ Author: Anja Hess
 Date: 2025 OCTOBER 20
 
 """
-from plots import *
+import os
+import glob
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import seaborn as sns
-import glob
 import scikit_posthocs as sp
 from scipy.stats import f_oneway
-file_dir = "./sourcedata/FIG_3EXT/E3E/"
+
+from scripts.utils.constants import TABLE_DIR
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR, TABLE_DIR
+from utils.plots import clustermap, R_violins
+
+file_dir = f"{SOURCE_DATA_DIR}FIG_3EXT/"
 palette= ["#355269", "#7db1b3"]
 
 def run_stats(df, variable="", category=""):
@@ -74,19 +80,21 @@ def run_stats(df, variable="", category=""):
     # END OF STATS FUNCTION
 
 
-def delta_plot_stats(file, outdir):
+def delta_plot_stats(file, outdir_plots="", outdir_tables=""):
     """
     Function for the delta line plots (difference of mean methylation)
     and statistical comparison of replicates
-    :param df:
-    :param outdir:
-    :return:
+    :param df: path to file
+    :param outdir_plots: str
+    :param outdir_tables: str
+    :return: creates line + violin plots of average methylation and statistics
+    tables
     """
     ################################################################################
     # Initiate results folder
     ################################################################################
-    os.makedirs(outdir, exist_ok=True)
-    outdir_file = f"{outdir}{file.rsplit('/',1)[1].replace('.tsv', '_mean.tsv')}"
+    file_id = file.rsplit("/",1)[1].replace(".tsv","")
+    outdir_file = f"{outdir_tables}{file_id}_mean.tsv"
 
     ################################################################################
     # Create data table
@@ -95,10 +103,10 @@ def delta_plot_stats(file, outdir):
         print("--- Generating stats table.")
         df = pd.read_table(file, sep='\t', index_col=0)
         try:
-            df = df.drop(columns=['0','1','2', 'FoPHepN1_cfDNA_PHH.chm13'])
+            df = df.drop(columns=['0','1','2'])
         except:
             try:
-                df = df.drop(columns=['start', 'end', '3', 'FoPHepN1_cfDNA_PHH.chm13'])
+                df = df.drop(columns=['start', 'end', '3',])
             except:
                 try:
                     df = df.drop(columns=['start', 'end'])
@@ -106,6 +114,7 @@ def delta_plot_stats(file, outdir):
                     df = pd.read_table(file, sep='\t',
                                        )
                     df = df.drop(columns=['0', '1', '2'])
+
         #############################################################################
         # Annotate metadata
         #############################################################################
@@ -122,40 +131,15 @@ def delta_plot_stats(file, outdir):
                                               "FoPHepN4":4, "FoPHepN1":1})
         mean_df.rename(columns={0: "mean_meth"}, inplace=True)
         mean_df.to_csv(outdir_file, sep='\t')
+
     ################################################################################
-    # Plot
+    # Plotting
     ################################################################################
     if os.path.isfile(outdir_file):
         df = pd.read_table(outdir_file, sep='\t', index_col=0)
-        #############################################################################
-        # Statistical comparison (average of all three replicates)
-        #############################################################################
-        cond_dict={}
-        for cond in df["condition"].unique():
-            print(f"--- {cond}")
-            stats = run_stats(df[df["condition"]==cond],
-                                category="day",
-                                variable="mean_meth")
-            stats.to_csv(outdir_file.replace('.tsv',
-                                             f'_stats_{cond}.csv'), sep='\t')
-            p_val = stats["p_value"]
-            cond_dict[cond] = p_val
-
-        sns.violinplot(data=df, x="day", y="mean_meth", hue="condition",
-                    dodge=True, color="white", palette=["white"],
-                       density_norm="count",)
-        sns.swarmplot(data=df, x="day", y="mean_meth", hue="condition",
-                    dodge=True, palette=palette, s=10, edgecolor="black",
-                      linewidth=0.2)
-        plt.title(f"{cond_dict}")
-        plt.xticks(rotation=90)
-        plt.ylim(0, 1)
-        plt.ylabel("Average CpG Methylation")
-        plt.savefig(outdir_file.replace(".tsv", f"_stats.pdf"))
-        plt.close()
 
         #############################################################################
-        # Delta-plot per replicate
+        # ED 3B - Delta-plot per replicate
         #############################################################################
         g = sns.FacetGrid(data=df, col="biol_rep",palette=palette,
                           hue="condition",sharex=False, sharey=True, aspect=0.8)
@@ -173,55 +157,59 @@ def delta_plot_stats(file, outdir):
         plt.suptitle(f"Delta meth: {str(delta_dict)}")
         plt.tight_layout()
         plt.legend()
-        plt.savefig(outdir_file.replace(".tsv", f"_delta.pdf"))
+        plt.savefig(f"{outdir_plots}{file_id}_delta.pdf")
+        plt.close()
+
+        #############################################################################
+        # ED 3D - Statistical comparison (average of all three replicates)
+        #############################################################################
+        cond_dict={}
+        for cond in df["condition"].unique():
+            print(f"--- {cond}")
+            stats = run_stats(df[df["condition"]==cond], category="day",
+                              variable="mean_meth")
+            stats.to_csv(outdir_file.replace('.tsv',
+                                             f'_stats_{cond}.csv'), sep='\t')
+            p_val = stats["p_value"]
+            cond_dict[cond] = p_val
+        sns.violinplot(data=df, x="day", y="mean_meth", hue="condition", dodge=True,
+                       color="white", palette=["white"], density_norm="count",)
+        sns.swarmplot(data=df, x="day", y="mean_meth", hue="condition", dodge=True,
+                      palette=palette, s=10, edgecolor="black", linewidth=0.2)
+        plt.title(f"{cond_dict}")
+        plt.xticks(rotation=90)
+        plt.ylim(0, 1)
+        plt.ylabel("Average CpG Methylation")
+        plt.savefig(f"{outdir_plots}{file_id}_stats.pdf")
         plt.close()
         # END OF LOOP
-
     # END OF FUNCTION
 
 
-def clustermap(file, method="average", metric="euclidean"):
-    ####################################################################################
-    # 3. Clustermap
-    ####################################################################################
-    cmap=sns.diverging_palette(220, 20, as_cmap=True)
-    df = pd.read_table(file, sep="\t", index_col=0)
-    df.dropna(inplace=True)
-    cols_of_interest = [e for e in df.columns if "DNA" in e  and "PHH" not in e]
-    df = df[cols_of_interest]
-    title = f"n = {len(df)}"
-    sns.clustermap(df, rasterized=True, cmap=cmap, method=method, metric=metric, vmin=0, vmax=1)
-    plt.title(title)
-    plt.savefig(file.replace(".tsv", f"_cluster_{method}_{metric}.pdf"), bbox_inches="tight")
-    plt.close()
-
-
-
+#######################################################################################
+# START THE RUN
+#######################################################################################
 for file in glob.glob(file_dir + "*.tsv"):
     if "mean" in file or "difference" in file or "merge" in file:
         continue
-    if "3X" not in file:
-        continue
-
+    file_id = file.rsplit('/',1)[1].replace(".tsv","")
     ####################################################################################
-    # 1. Delta plot / Statistics
+    # ED 3B & ED 3D Delta line plot / Violin plots with statistical comp.
     ####################################################################################
     print(f"---- Delta plots and statistics {file}")
-    delta_plot_stats(file, outdir=file_dir+"delta_stats/")
+    delta_plot_stats(file, outdir_plots=FIGURE_DIR, outdir_tables=TABLE_DIR)
 
     ####################################################################################
-    # 2. Violin plots - methylation
+    # ED 3A & ED 3C : Violin plots - and clustermaps for DNA methylation
     ####################################################################################
     R_violins(file)
-    clustermap(file, method="complete")
+    clustermap(file, outdir=FIGURE_DIR)
 
     ####################################################################################
-    # 3. Averaging
+    # Average of all replicates
     ####################################################################################
-    merge_dir = file_dir+"merge/"
-    os.makedirs(merge_dir, exist_ok=True)
-    average_file = merge_dir + file.replace(".tsv",
-                                            "_merge.tsv").rsplit('/',1)[1]
+    average_file = f"{TABLE_DIR}{file_id}_merge.tsv"
+
     if not os.path.isfile(average_file):
         df = pd.read_table(file, sep="\t", index_col=0)
         d_20g = [e for e in df.columns if "D20" in e and "gDNA" in e]
@@ -230,18 +218,16 @@ for file in glob.glob(file_dir + "*.tsv"):
         d_20cf = [e for e in df.columns if "D20" in e and "cfDNA" in e]
         d_10cf = [e for e in df.columns if "D10" in e and "cfDNA" in e]
         d_0cf = [e for e in df.columns if "D0" in e and "cfDNA" in e]
-        phhcf = [e for e in df.columns if "PHH" in e]
         df["D20_cfDNA_avg"] = pd.Series(np.nanmean(df[d_20cf], axis=1))
         df['D10_cfDNA_avg'] = pd.Series(np.nanmean(df[d_10cf], axis=1))
         df['D0_cfDNA_avg'] = pd.Series(np.nanmean(df[d_0cf], axis=1))
         df['D20_gDNA_avg'] = pd.Series(np.nanmean(df[d_20g], axis=1))
         df['D10_gDNA_avg'] = pd.Series(np.nanmean(df[d_10g], axis=1))
         df['D0_gDNA_avg'] = pd.Series(np.nanmean(df[d_0g], axis=1))
-        df['PHH_cfDNA_avg'] = df[phhcf[0]]
         cols_of_interest = [e for e in df.columns if "avg" in e or e=="0" or e=="1" or e=="2"]
         df = df[cols_of_interest]
         df.to_csv(average_file, sep="\t")
     R_violins(average_file)
-    clustermap(average_file, method="complete")
+    clustermap(average_file, outdir=FIGURE_DIR)
     # END OF FUNCTION
 # END OF SCRIPT
