@@ -1,0 +1,12 @@
+# Table Bioreactor-hepatocytes_1kb_tiles_averages_shared.tsv
+
+Please download above table from GEO (GSE293866) and put it into THIS folder.
+The table will be containing the average CpG methylation per 1kb tile of the human genome (chm13v.2) for all samples from the bioreactor hepatocyte time course (cell-free and matched genomic DNA)
+
+# Table filter_stats.csv
+
+This table contains the CpG number covered (default) and after filtering (at least 2X read coverage and autosomes only). 
+
+# Reproduce plots
+
+After you have gathered the files, run python3 Fig2_B.py (from the main directory). Plots will appear inside same folder as data files.
