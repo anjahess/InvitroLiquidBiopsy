@@ -8,6 +8,11 @@ Affiliation: Max Planck Institute for Molecular Genetics, Berlin, Germany
 Date: 2025-JULY-21
 
 ## 1. Description
+
+<p align="center">
+<img src="static/img/overview_method.png" alt="Img_3">
+</p>
+
 Scripts to reproduce figures from the manuscript:
 Hess, Anja et al. 2025: Non-disruptive methylation monitoring of cellular states with cell-free DNA
 
