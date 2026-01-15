@@ -13,14 +13,13 @@ Date: 2025 APRIL 07
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
 
 ####################################################################################
-# Electropherogram plotting
+# ED 1E - Ex vivo incubation of cfDNA and impact on fragment lengths
 ####################################################################################
-source = "./sourcedata/FIG_1EXT/E1D/"
-df = pd.read_csv(f"{source}/FigE1D_sourcedata.csv", index_col=None)
-print(df)
+source = f"{SOURCE_DATA_DIR}/FIG_1EXT/E1E/"
+df = pd.read_csv(f"{source}/FigE1E_sourcedata.csv", index_col=None)
 x="bp_pos"
 y="normalized_fluorescent_units"
 hue="timepoint"
@@ -30,15 +29,17 @@ df["category"] = df["treatment"].map({"NONE":"untreated",
                                       "EDTA_25uM":"stabilized",
                                       "70°C":"stabilized","gDNA":"gDNA"})
 palette=["#85ada3","#2d435b"]
+print(df)
 
 ####################################################################################
 #  Show degradation under normal conditions (of cf and added gDNA)
 ####################################################################################
+print("--- Plotting DNA fragments")
 g = sns.FacetGrid(df, col="category", hue="timepoint", palette=palette)
 g.map(sns.lineplot, x,y)
 g.set(xscale='log')
 plt.legend()
-plt.savefig(f"{source}overview.pdf", bbox_inches='tight')
+plt.savefig(f"{FIGURE_DIR}mESC_overview.pdf", bbox_inches='tight')
 plt.close()
 
 
@@ -48,18 +49,7 @@ plt.close()
 g = sns.FacetGrid(df, hue="treatment", row="timepoint")
 g.map(sns.lineplot, x,y).add_legend()
 g.set(xscale='log')
-plt.savefig(f"{source}stabilizer.pdf", bbox_inches='tight')
-plt.close()
-
-####################################################################################
-#  Show information per mESC cell line
-####################################################################################
-g = sns.FacetGrid(df, col="category", hue="timepoint", palette=palette,
-                  row="line")
-g.map(sns.lineplot, x,y)
-g.set(xscale='log')
-plt.legend()
-plt.savefig(f"{source}treatment_per_cat.pdf", bbox_inches='tight')
+plt.savefig(f"{FIGURE_DIR}mESC_stabilizer.pdf", bbox_inches='tight')
 plt.close()
 
 # END OF SCRIPT
