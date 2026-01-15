@@ -9,25 +9,24 @@ Author: Anja Hess
 Date: 2025 APRIL 07
 
 """
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
 
 ####################################################################################
-# CpG coverage plotting
+# Read coverage plotting
 ####################################################################################
-df = pd.read_csv("./sourcedata/FIG_1EXT/E1G/FigE1G_WGBS-filter-stats.csv",
-                 index_col=0)
-print(df)
+source_dir = f"{SOURCE_DATA_DIR}/FIG_1EXT/E1G/WGBS-read-cov-metrics.txt"
+palettediff2 = [ "#7db1b3", "#355269"]
+df = pd.read_table(source_dir, header=0)
 plt.figure(figsize=(2,3))
-df["specimen"] = df["sample"].str.split('_', expand=True)[0]
-sns.barplot(data=df, x="specimen", y="n_cpg", palette=["#5f9ea0","#2c4e60", "salmon"],  edgecolor="black")
-sns.swarmplot(data=df, x="specimen", y="n_cpg", palette=["#5f9ea0","#2c4e60","salmon"], linewidth=0.5,edgecolor="black", s=4)
-sns.barplot(data=df, x="specimen", y="n_cpg_filtered", palette=["#5f9ea0","#2c4e60", "salmon"], edgecolor="black")
-sns.swarmplot(data=df, x="specimen", y="n_cpg_filtered", palette=["#5f9ea0","#2c4e60","salmon"], linewidth=0.5,edgecolor="black", s=4)
-plt.ylim(0, 2.5e7)
-plt.tight_layout()
-plt.savefig("./sourcedata/FIG_1EXT/E1G/filter_stats.pdf", bbox_inches="tight")
-plt.close()
-
+sns.violinplot(data=df, x="specimen", y="mean", hue="specimen", palette=palettediff2,
+               order=["cell-free DNA", "gDNA"])
+sns.swarmplot(data=df, x="specimen", y="mean", hue="specimen", palette=palettediff2,
+              order=["cell-free DNA", "gDNA"], linewidth=0.5,edgecolor="black", s=4)
+plt.ylim(0, 50)
+plt.ylabel("Average coverage (x)")
+plt.savefig(f"{FIGURE_DIR}mESC_WGBS_reads.pdf",
+            bbox_inches="tight")
 # END OF SCRIPT
