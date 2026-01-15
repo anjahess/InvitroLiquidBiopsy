@@ -14,11 +14,11 @@ import glob
 import seaborn as sns
 import pandas as pd
 import numpy as np
-from utils.constants import SOUCE_DATA_DIR, FIGURE_DIR, TABLE_DIR
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR, TABLE_DIR
 
 
 # Set variables and load the dataframe
-source_subdir = f"{SOUCE_DATA_DIR}FIG_2EXT/E2C-E/"
+source_subdir = f"{SOURCE_DATA_DIR}FIG_2EXT/E2C-E/"
 source_file = f"{source_subdir}cpg_df.csv"
 palette = ["#5f9ea0", "#2c4e60", "salmon", "blue"]
 order = ["gDNA", "cell-free DNA", "reference"]

@@ -13,12 +13,12 @@ Date: 2025 APRIL 07
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from utils.constants import SOUCE_DATA_DIR, FIGURE_DIR
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
 
 ####################################################################################
 # qPCR expression plotting
 ####################################################################################
-source_dir = f"{SOUCE_DATA_DIR}/FIG_2EXT/E2A/Bioreactor_hepatocytes_qPCR.csv"
+source_dir = f"{SOURCE_DATA_DIR}/FIG_2EXT/E2A/Bioreactor_hepatocytes_qPCR.csv"
 
 palettediff2 = ["#7db1b3", "#355269"]
 order = [""]
