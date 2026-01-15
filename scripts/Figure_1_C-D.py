@@ -12,16 +12,18 @@ Date: 2025 APRIL 07
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from plots import *
+from utils.plots import R_violins, smooth_scatter
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
+
 
 ####################################################################################
 # FIG 1C - Violin plot
 ####################################################################################
-results_file = "./sourcedata/FIG_1/1CD/WGBS_DNMT1i_1kb_tiles_averages_shared.tsv"
-plot_dir = "./sourcedata/FIG_1/1CD/"
+# ATTENTION - THIS FILE NEEDS TO BE DOWNLOADED FIRST FROM GEO (GSE293866).
+results_file = f"{SOURCE_DATA_DIR}/FIG_1/1CD/WGBS_DNMT1i_1kb_tiles_averages_shared.tsv"
+plot_dir = FIGURE_DIR
 
-# For demonstration, do random subsampling to e.g. 1K, to be faster
-R_violins(results_file, plot_dir=plot_dir, subsampling=1000)
+R_violins(results_file, plot_dir=plot_dir)
 
 ####################################################################################
 # FIG 1D - Smooth scatter plots

@@ -1,0 +1,6 @@
+# Table WGBS_DNMT1i_1kb_tiles_averages_shared.tsv
+
+Please download the summary table from GEO (GSE293866) and put it into THIS folder. 
+The table will be containing the average CpG methylation per 1kb tile of the mouse genome (mm10) for all samples from the 6 day DNMT1i treatment.
+
+Then execute the python script Fig1_C-D.py
