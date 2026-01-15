@@ -64,29 +64,6 @@ Empty directory into which all results (figures and tables) will be saved.
 This folder contains subdirectories for all main figures and the connected panels. Whenever compatible with Github's
 file size limitations, the source data is provided to ease reproducing the results. 
 
-    │── FIG_1
-    │   ├── 1B
-    │   ├── 1CD
-    │   ├── 1E
-    │   ├── 1F
-    │   └── 1G
-    ├── FIG_1EXT
-    │   ├── E1A
-    │   ├── E1B
-    │   ├── E1C
-    │   ├── E1D
-    │   ├── E1E
-    │   ├── E1F
-    │   └── E1G
-    ├── FIG_2
-    │   ├── 2B
-    │   ├── 2CD
-    │   └── 2E
-    └── FIG_2EXT
-        ├── E2A
-        ├── E2C
-        ├── E2D
-        └── E2E-F
 
 ### 3.3 A word on large source data 
 
@@ -122,7 +99,7 @@ This will result in the following output.
 
 Now navigate to the results folder to find the newly created plot pcamean-meth.pdf
 
-![Test Image 5](./static/img/pcamean-meth.png)
+![PCA methylation](./static/img/pcamean-meth.png)
 
 ## 5. A word on random seeds
 
