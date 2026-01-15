@@ -15,9 +15,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
-
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
 ####################################################################################
-# EXT FIG 1D,G - Line plots visualizing cf yield dynamics with apoptosis rates
+# EXT FIG 1C - Line plots visualizing cf yield dynamics with apoptosis rates
 ####################################################################################
 
 def plot_csv(path_to_file, delimiter=',', palette=["grey"]):
@@ -72,7 +72,7 @@ def plot_csv(path_to_file, delimiter=',', palette=["grey"]):
             ax.yaxis.set_major_locator(matplotlib.ticker.MultipleLocator(yticks))
 
         plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-        plt.savefig(f"{path_to_file.rsplit('/',1)[0]}/{experiment}_summary.pdf",
+        plt.savefig(f"{FIGURE_DIR}/mESC_apo_cfDNAyield.pdf",
                     bbox_inches="tight")
         plt.close()
 
@@ -85,7 +85,7 @@ def plot_csv(path_to_file, delimiter=',', palette=["grey"]):
         print(slope_intercept) # [0.10809674 0.04921136]
         # END OF FUNCTION
 
-root_dir = "./sourcedata/FIG_1EXT/E1B/FigE1B_sourcedata.csv"
-plot_csv( root_dir, delimiter="\t", palette=["#477b80","#b85c54"])
+root_dir = f"{SOURCE_DATA_DIR}FIG_1EXT/E1C/FigE1C_sourcedata.csv"
+plot_csv(root_dir, delimiter="\t", palette=["#477b80","#b85c54"])
 
 # END OF SCRIPT

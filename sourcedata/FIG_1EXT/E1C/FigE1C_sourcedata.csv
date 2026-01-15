@@ -1,0 +1,25 @@
+Experiment	sample_id	cell_line	treatment	time_point	latency_to_wash_in_hrs	FACS_apo_percent	total_ng	average_yield_ng_per_line	average_yield_ng_total	cells_for_DNA_yield	average_cells_per_line	average_cells_total	pg_per_cell	ng_per_10K_cells	ng_per_10K_cells_per_hour
+1_24hmESC	V_50_Stauro	V6.5	Stauro	24	24	35.2	175			416556	V6.5	571475	0.42	4.2	0.2
+1_24hmESC	V_50_0	V6.5	Ctrl	0	0	8.6	0			360000	396178		0	0	na
+1_24hmESC	V_50_1	V6.5	Ctrl	1	1	8.6	3.416	3.4		407349			0.008	0.1	0.1
+1_24hmESC	V_50_2	V6.5	Ctrl	2	2	7.5	9.8			405730			0.024	0.2	0.1
+1_24hmESC	V_50_4	V6.5	Ctrl	4	4	6.8	14			487204			0.029	0.3	0.1
+1_24hmESC	V_50_6	V6.5	Ctrl	6	6	7.1	21.84			409451			0.053	0.5	0.1
+1_24hmESC	V_50_18	V6.5	Ctrl	18	18	8.9	49.28			285370			0.173	1.7	0.1
+1_24hmESC	V_50_24	V6.5	Ctrl	24	24	10.9	76.16			397765			0.191	1.9	0.1
+1_24hmESC	F_100_Stauro	F1G4	Stauro	24	24	34.1	228.2			852353			0.268	2.7	0.1
+1_24hmESC	F_100_0	F1G4	Ctrl	0	0	6.9	0			685000	F1G4		0	0	na
+1_24hmESC	F_100_1	F1G4	Ctrl	1	1	9.8	10.024	10	1 hour	736000	684743		0.014	0.1	0.1
+1_24hmESC	F_100_2	F1G4	Ctrl	2	2	9.6	12.152		18.3	675319			0.018	0.2	0.1
+1_24hmESC	F_100_4	F1G4	Ctrl	4	4	6.7	14.28			763404			0.019	0.2	0
+1_24hmESC	F_100_6	F1G4	Ctrl	6	6	7.1	23.52			660323			0.036	0.4	0.1
+1_24hmESC	F_100_18	F1G4	Ctrl	18	18	7.1	50.96			640341			0.08	0.8	0
+1_24hmESC	F_100_24	F1G4	Ctrl	24	24	7.8	61.04			636333			0.096	1	0
+1_24hmESC	K_100_Stauro	KH2	Stauro	24	24	28.9	242.2			681481			0.355	3.6	0.1
+1_24hmESC	K_100_0	KH2	Ctrl	0	0	11.6	0			498737	KH2		0	0	na
+1_24hmESC	K_100_1	KH2	Ctrl	1	1	22.7	41.44	41.4		748902	602202		0.055	0.6	0.6
+1_24hmESC	K_100_2	KH2	Ctrl	2	2	9.1	31.64			621758			0.051	0.5	0.3
+1_24hmESC	K_100_4	KH2	Ctrl	4	4	6.4	52.08			668211			0.078	0.8	0.2
+1_24hmESC	K_100_6	KH2	Ctrl	6	6	8.7	69.16			527500			0.131	1.3	0.2
+1_24hmESC	K_100_18	KH2	Ctrl	18	18	8.7	138.32		24 hours	533600			0.259	2.6	0.1
+1_24hmESC	K_100_24	KH2	Ctrl	24	24	7.9	191.8		109.7	616703			0.311	3.1	0.1
