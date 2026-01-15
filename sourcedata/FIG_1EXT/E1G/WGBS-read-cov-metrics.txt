@@ -1,0 +1,16 @@
+specimen	sample	mean	std	min	25%	50%	75%	max
+gDNA	mpimg_L31945-1_AM-WGBS-622_S8_mm10.bsmap.srt.rd.bam	31.77	202.26	0	23.0	31.0	39.0	143375
+gDNA	mpimg_L31946-1_AM-WGBS-623_S9_mm10.bsmap.srt.rd.bam	35.34	256.10	0	25.0	34.0	43.0	157771
+gDNA	mpimg_L31947-1_AM-WGBS-624_S10_mm10.bsmap.srt.rd.bam	34.29	191.45	0	24.0	33.0	42.0	110274
+gDNA	mpimg_L31948-1_AM-WGBS-625_S11_mm10.bsmap.srt.rd.bam	36.06	204.24	0	26.0	35.0	44.0	115292
+gDNA	mpimg_L31949-1_AM-WGBS-626_S12_mm10.bsmap.srt.rd.bam	28.28	158.11	0	20.0	27.0	35.0	86115
+gDNA	mpimg_L31950-1_AM-WGBS-627_S13_mm10.bsmap.srt.rd.bam	32.36	215.77	0	23.0	31.0	39.0	129236
+gDNA	mpimg_L31951-1_AM-WGBS-628_S14_mm10.bsmap.srt.rd.bam	27.49	155.87	0	19.0	27.0	34.0	97807
+gDNA	mpimg_L31952-1_AM-WGBS-629_S15_mm10.bsmap.srt.rd.bam	35.23	220.35	0	25.0	34.0	43.0	158737
+cell-free DNA	mpimg_L31953-1_AM-WGBS-630_S16_mm10.bsmap.srt.rd.bam	33.36	255.40	0	24.0	32.0	40.0	194030
+cell-free DNA	mpimg_L31954-1_AM-WGBS-631_S17_mm10.bsmap.srt.rd.bam	34.62	293.73	0	24.0	33.0	42.0	212482
+cell-free DNA	mpimg_L31955-1_AM-WGBS-632_S18_mm10.bsmap.srt.rd.bam	32.18	318.82	0	23.0	31.0	39.0	217970
+cell-free DNA	mpimg_L31956-1_AM-WGBS-633_S19_mm10.bsmap.srt.rd.bam	31.82	306.71	0	23.0	30.0	38.0	197529
+cell-free DNA	mpimg_L31957-1_AM-WGBS-634_S20_mm10.bsmap.srt.rd.bam	32.21	295.16	0	23.0	31.0	39.0	181323
+cell-free DNA	mpimg_L31958-1_AM-WGBS-635_S21_mm10.bsmap.srt.rd.bam	33.91	373.73	0	24.0	32.0	40.0	231467
+cell-free DNA	mpimg_L31959-1_AM-WGBS-636_S22_mm10.bsmap.srt.rd.bam	32.60	309.78	0	23.0	31.0	39.0	215171

@@ -1,0 +1,3 @@
+# Table WGBS-filter-stats.csv
+
+WGBS CpG coverage statistics: This table contains the CpG number covered (default) and after filtering (at least 10X read coverage and autosomes only).
