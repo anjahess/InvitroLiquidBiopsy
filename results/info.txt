@@ -1,0 +1,1 @@
+# This folder contains two directories: ./figures is where all generated plots are saved to. ./tables is where intermediate data tables are saved to.

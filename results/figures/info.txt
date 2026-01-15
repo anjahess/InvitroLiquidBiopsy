@@ -1,0 +1,1 @@
+# This is ./figures: all generated plots are saved to this folder
