@@ -12,11 +12,13 @@ Date: 2025 APRIL 07
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from utils.constants import SOUCE_DATA_DIR, FIGURE_DIR
 
 ####################################################################################
 # qPCR expression plotting
 ####################################################################################
-source_dir = "./sourcedata/FIG_2EXT/E2A/Bioreactor_hepatocytes_qPCR.csv"
+source_dir = f"{SOUCE_DATA_DIR}/FIG_2EXT/E2A/Bioreactor_hepatocytes_qPCR.csv"
+
 palettediff2 = ["#7db1b3", "#355269"]
 order = [""]
 df = pd.read_table(source_dir, header=0)
@@ -27,7 +29,6 @@ sns.swarmplot(data=df, x="Gene", y="2^(-Delta Ct)", hue="Experiment",
               palette=palettediff2, linewidth=0.5, edgecolor="black", s=4)
 plt.ylabel("mRNA expression 2^(-Delta Ct)")
 plt.tight_layout()
-plt.savefig(source_dir.replace(".csv", f".pdf"),
+plt.savefig(f"{FIGURE_DIR}Bioreactor_hepatocytes_qPCR.pdf",
             bbox_inches="tight")
-
 # END OF SCRIPT
