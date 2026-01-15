@@ -10,23 +10,22 @@ Date: 2026 JAN 15
 
 """
 import os
-
 import pandas as pd
 from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR
 from utils.plots import smooth_scatter
 import shutil
+
+# Define directories and unzip the data
 results_file =  f"{SOURCE_DATA_DIR}/FIG_2EXT/E2F/Bioreactor-hepatocytes_5hmC_1kb_tiles.zip"
 unzip_dir = f"{SOURCE_DATA_DIR}/FIG_2EXT/E2F/"
 unzipped_file = f"{results_file.replace('.zip','.tsv')}"
-
 # Unzip the file
 if not os.path.isfile(unzipped_file):
     shutil.unpack_archive(results_file,unzip_dir)
-
 plot_dir = f"{FIGURE_DIR}/"
 
 ####################################################################################
-# FIG 2B - Smooth scatter plots
+# ED 2F - Smooth scatter plots
 ####################################################################################
 df = pd.read_csv(unzipped_file, sep="\t")
 samples = [e for e in list(df.columns) if e not in ["chrom", "start", "end"]
