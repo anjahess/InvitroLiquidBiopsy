@@ -17,8 +17,6 @@ import numpy as np
 import seaborn as sns
 import scikit_posthocs as sp
 from scipy.stats import f_oneway
-
-from scripts.utils.constants import TABLE_DIR
 from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR, TABLE_DIR
 from utils.plots import clustermap, R_violins
 

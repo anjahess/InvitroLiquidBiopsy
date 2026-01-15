@@ -9,20 +9,21 @@ Author: Anja Hess
 Date: 2025 APRIL 07
 
 """
-from plots import *
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from utils.plots import R_violins
+from utils.constants import SOURCE_DATA_DIR, FIGURE_DIR, TABLE_DIR
 
-results_file = "./sourcedata/FIG_2/2CD/Bioreactor-hepatocytes_hep-enhancers-ES-filtered.tsv"
-anno_file = "./sourcedata/FIG_2/2CD/Bioreactor-hepatocytes_hep-enhancers-ES-filtered_anno.tsv"
-plot_dir = "./sourcedata/FIG_2/2CD/"
+results_file = f"{SOURCE_DATA_DIR}/FIG_2/2DE/Bioreactor-hepatocytes_hep-enhancers-ES-filtered.tsv"
+anno_file = f"{SOURCE_DATA_DIR}/FIG_2/2DE/Bioreactor-hepatocytes_hep-enhancers-ES-filtered_anno.tsv"
+plot_dir = FIGURE_DIR
 
 ####################################################################################
 # FIG 2C - Violin plot enhancer methylation
 ####################################################################################
 # For demonstration, lower the subsampling to e.g. 1K, will be faster
-R_violins(results_file, plot_dir=plot_dir, subsampling=100000)
+R_violins(results_file, plot_dir=plot_dir)
 
 ####################################################################################
 # FIG 2D - Heatmap enhancer methylation
@@ -45,7 +46,7 @@ for gene in y_labels_ticks:
 print(len(df), " total regions in clustermap.")
 cm = sns.clustermap(df, rasterized=True, cmap=cmap, vmin=0, vmax=1,
                     yticklabels=y_labels_new)
-plt.savefig(results_file.replace(".tsv", f"_cluster_n{len(df)}.pdf"),
+plt.savefig(f"{FIGURE_DIR}Bioreactor-hepatocytes_cluster_n{len(df)}.pdf",
             bbox_inches="tight")
 plt.close()
 

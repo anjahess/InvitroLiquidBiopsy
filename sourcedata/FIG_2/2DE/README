@@ -1,0 +1,10 @@
+# Table Bioreactor-hepatocytes_hep-enhancers-ES-filtered.tsv
+# Table Bioreactor-hepatocytes_hep-enhancers-ES-filtered_anno.tsv
+
+
+Please download the tables from GEO (GSE293866) and put it into THIS folder. 
+Then execute the script Fig2_CD.py.
+
+The tables contain the average CpG methylation per hepatocyte enhancer (defined in Loyfer 2023, filtered for regions with low methylation in hiPSC, lifted to genome chm13v.2) for all samples from the bioreactor hepatocyte time course (cell-free and matched genomic DNA).
+
+The anno file contains example gene annotations for the clustermap.

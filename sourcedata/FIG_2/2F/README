@@ -1,0 +1,9 @@
+# 6 Bigwigs to be loaded into IGV, matched g and cell-free DNA from bioreactor hepatocyte timecourse. To be downloaded from GEO (GSE293866).
+
+# Names 
+FoPHep_cfDNA_D0_merge.chm13_filtered.bw
+FoPHep_cfDNA_D10_merge.chm13_filtered.bw
+FoPHep_cfDNA_D20_merge.chm13_filtered.bw
+FoPHep_gDNA_D0_merge.chm13_filtered.bw
+FoPHep_gDNA_D10_merge.chm13_filtered.bw
+FoPHep_gDNA_D20_merge.chm13_filtered.bw
