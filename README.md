@@ -15,7 +15,7 @@ Date (revision updates): 2026-JAN-15
 </p>
 
 Scripts to reproduce figures from the manuscript:
-Hess, Anja et al. 2025: Non-disruptive methylation monitoring of cellular states with cell-free DNA
+Hess, Anja et al. 2026: Non-disruptive in vitro monitoring of cellular states with cell-free DNA methylation
 
 ## 2. Before you start
 
@@ -116,6 +116,6 @@ Raw and processed sequencing data generated in this study are publicly available
 ## 7. Citation
 
 **Anja Hess, Alexander Kovacsovics, Fabian Bachinger, Helene Kretzmer, Ludovic Vallier and Alexander Meissner: 
-Non-disruptive methylation monitoring of cellular states with cell-free DNA (2025)**
+Non-disruptive in vitro monitoring of cellular states with cell-free DNA methylation (2026)**
 
 *Fabian Bachinger and  Alexander Kovacsovics contributed equally as second authors to this work.*
