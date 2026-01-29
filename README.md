@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1023708949.svg)](https://doi.org/10.5281/zenodo.18410947)
+
 Non-disruptive methylation monitoring of cellular states with cell-free DNA 
 ===========
 
