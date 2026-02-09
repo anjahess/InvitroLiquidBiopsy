@@ -140,7 +140,7 @@ def smooth_scatter(df, plot_dir="", samples=[], subsampling=100000, region_id=""
     """
 
     sns.set_theme(style='ticks')
-
+    base_plot_dir = plot_dir
     #########################################################################
     # Random sampling (speed)
     #########################################################################
@@ -153,10 +153,8 @@ def smooth_scatter(df, plot_dir="", samples=[], subsampling=100000, region_id=""
         exit()
 
     sample_pairs = []
-
     for sample in samples:
         for other_sample in [e for e in samples if e not in sample]:
-
             if f"{sample}-{other_sample}" in sample_pairs:
                 print(f"{sample}-{other_sample} exists")
                 continue
@@ -200,12 +198,15 @@ def smooth_scatter(df, plot_dir="", samples=[], subsampling=100000, region_id=""
             # CONCORDANCE RESULT
             #################################################################
             # Loading the function defined in R.
+            plot_dir = base_plot_dir + f"{region_id}_{sample}_vs_{other_sample}_R.pdf"
+            print(plot_dir)
+
             r = robjects.r
             r['source'](f"{UTILS_DIR}/R_plots.R")
-            plot_dir = plot_dir + f"{region_id}_{sample}_vs_{other_sample}_R.pdf"
             plotsmoothscatter = robjects.globalenv['plotsmoothscatter']
             df_r = ro.conversion.py2rpy(df_cut)
             plotsmoothscatter(df_r, plot_dir, title, sample, other_sample)
+
             # END OF SAMPLE COMP LOOP
     # END OF FUNCTION
 
