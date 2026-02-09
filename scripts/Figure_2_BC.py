@@ -55,10 +55,10 @@ df = df[samples]
 df.dropna(inplace=True)
 print(df.shape)
 
-samples = ['FoPHep_cfDNA_D10_merge.chm13', 'FoPHep_gDNA_D0_merge.chm13',
-           'FoPHep_cfDNA_D20_merge.chm13', 'FoPHep_gDNA_D20_merge.chm13',
-           'FoPHep_cfDNA_D0_merge.chm13', 'FoPHep_gDNA_D10_merge.chm13']
-smooth_scatter(df, plot_dir=plot_dir, samples=samples, region_id="Tiles")
-
+samples = [['FoPHep_cfDNA_D10_merge.chm13', 'FoPHep_gDNA_D0_merge.chm13'],
+           ['FoPHep_cfDNA_D20_merge.chm13', 'FoPHep_gDNA_D20_merge.chm13'],
+           ['FoPHep_cfDNA_D0_merge.chm13', 'FoPHep_gDNA_D10_merge.chm13']]
+for day in samples:
+    smooth_scatter(df, plot_dir=plot_dir, samples=day, region_id="Tiles")
 
 # END OF SCRIPT
