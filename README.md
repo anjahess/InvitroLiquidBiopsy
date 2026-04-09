@@ -117,7 +117,7 @@ Raw and processed sequencing data generated in this study are publicly available
 
 ## 7. Citation
 
-**Anja Hess, Alexander Kovacsovics, Fabian Bachinger, Helene Kretzmer, Ludovic Vallier and Alexander Meissner: 
-Non-disruptive in vitro monitoring of cellular states with cell-free DNA methylation (2026)**
+Hess, A., Kovacsovics, A.*, Bachinger, F.*, Vallier, L., Kretzmer, H. & Meissner, A. **Non-disruptive in vitro monitoring of cellular states with cell-free DNA methylation**. Genome Biol 27, 59 (2026).
+DOI: 10.1186/s13059-026-03996-1 
 
 *Fabian Bachinger and  Alexander Kovacsovics contributed equally as second authors to this work.*
